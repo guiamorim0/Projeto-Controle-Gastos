@@ -1,4 +1,4 @@
-from subalgoritmos import registrar_gastos
+from subalgoritmos import (registrar_gastos, listar_gastos)
 
 print("""
 MENU PRINCIPAL
@@ -27,3 +27,6 @@ while True:
 
         print("Gastos registrados com sucesso!")
         print("-" * 30)
+
+    elif escolha == "2":
+        listar_gastos()
