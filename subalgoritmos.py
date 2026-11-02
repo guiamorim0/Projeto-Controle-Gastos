@@ -45,3 +45,15 @@ def total_por_categoria() -> None:
                 print(f"{categoria}: R$ {total:.2f}")
     except FileNotFoundError:
         print("ERRO! O arquivo gastos.json nao existe!")
+
+def maior_gasto() -> None:
+    try:
+        with open("gastos.json", "r", encoding="utf-8") as arquivo:
+            gastos = json.load(arquivo)
+            maior = gastos[0]
+            for linha in gastos:
+                if linha["valor"] > maior["valor"]:
+                    maior = linha
+            print(f"Maior gasto: {maior['descricao']} | {maior['categoria']} | R$ {maior['valor']:.2f}")
+    except FileNotFoundError:
+        print("ERRO! O arquivo gastos.json nao existe!")
