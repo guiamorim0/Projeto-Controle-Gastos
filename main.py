@@ -1,4 +1,4 @@
-from subalgoritmos import (registrar_gastos, listar_gastos)
+from subalgoritmos import (registrar_gastos, listar_gastos, total_por_categoria)
 
 print("""
 MENU PRINCIPAL
@@ -30,3 +30,6 @@ while True:
 
     elif escolha == "2":
         listar_gastos()
+
+    elif escolha == "3":
+        total_por_categoria()

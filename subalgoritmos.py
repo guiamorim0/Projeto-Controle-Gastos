@@ -26,3 +26,22 @@ def listar_gastos() -> None:
                 print(f"{linha['descricao']} | {linha['categoria']} | R$ {linha['valor']:.2f}")
     except FileNotFoundError:
         print("ERRO! O arquivo gastos.json nao existe!")
+
+def total_por_categoria() -> None:
+    try:
+        with open("gastos.json", "r", encoding="utf-8") as arquivo:
+            gastos = json.load(arquivo)
+            totais = {}
+            for linha in gastos:
+                categoria = linha["categoria"]
+                valor = linha["valor"]
+
+                if categoria in totais:
+                    totais[categoria] += valor
+                else:
+                    totais[categoria] = valor
+
+            for categoria, total in totais.items():
+                print(f"{categoria}: R$ {total:.2f}")
+    except FileNotFoundError:
+        print("ERRO! O arquivo gastos.json nao existe!")
