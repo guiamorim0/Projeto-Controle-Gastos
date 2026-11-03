@@ -1,4 +1,4 @@
-from subalgoritmos import (registrar_gastos, listar_gastos, total_por_categoria, maior_gasto)
+from subalgoritmos import (registrar_gastos, listar_gastos, total_por_categoria, maior_gasto, exportar_csv)
 
 print("""
 MENU PRINCIPAL
@@ -36,3 +36,12 @@ while True:
 
     elif escolha == "4":
         maior_gasto()
+
+    elif escolha == "5":
+
+        resultado_csv = exportar_csv()
+
+        if resultado_csv:
+            print(resultado_csv)
+
+            

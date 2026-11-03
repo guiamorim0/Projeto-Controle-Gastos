@@ -1,4 +1,6 @@
 import json
+import csv
+from openpyxl import Workbook, load_workbook
 
 def registrar_gastos(descricao: str, categoria: str, valor: float) -> str | None:
     try:
@@ -57,3 +59,17 @@ def maior_gasto() -> None:
             print(f"Maior gasto: {maior['descricao']} | {maior['categoria']} | R$ {maior['valor']:.2f}")
     except FileNotFoundError:
         print("ERRO! O arquivo gastos.json nao existe!")
+
+def exportar_csv() -> None:
+    try:
+        with open("gastos.json", "r", encoding="utf-8") as arquivo:
+            gastos = json.load(arquivo)
+    except FileNotFoundError:
+        print("ERRO! O arquivo gastos.json nao existe!")
+        return
+
+    with open("gastos.csv", "w", newline="", encoding="utf-8") as arquivo:
+        gravador = csv.writer(arquivo, delimiter=",")
+        gravador.writerow(['DESCRICAO', 'CATEGORIA', 'VALOR'])
+        for linha in gastos:
+            gravador.writerow([linha['descricao'], linha['categoria'], linha['valor']])
