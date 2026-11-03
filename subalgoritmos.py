@@ -73,3 +73,27 @@ def exportar_csv() -> None:
         gravador.writerow(['DESCRICAO', 'CATEGORIA', 'VALOR'])
         for linha in gastos:
             gravador.writerow([linha['descricao'], linha['categoria'], linha['valor']])
+
+def exportar_excel() -> None:
+    planilha = Workbook()
+    aba = planilha.active
+    aba.title = "Gastos"
+    
+    aba["A1"] = "Descricao"
+    aba["B1"] = "Categoria"
+    aba["C1"] = "Valor"
+    
+    try:
+        with open("gastos.json", "r", encoding="utf-8") as arquivo:
+            gastos = json.load(arquivo)
+    except FileNotFoundError:
+        print("ERRO! O arquivo gastos.json nao existe!")
+        return
+
+    for numero_linha, linha in enumerate(gastos, 2):
+        aba[f"A{numero_linha}"] = linha['descricao']
+        aba[f"B{numero_linha}"] = linha['categoria']
+        aba[f"C{numero_linha}"] = float(linha['valor'])
+
+    planilha.save("gastos.xlsx")
+    

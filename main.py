@@ -1,4 +1,4 @@
-from subalgoritmos import (registrar_gastos, listar_gastos, total_por_categoria, maior_gasto, exportar_csv)
+from subalgoritmos import (registrar_gastos, listar_gastos, total_por_categoria, maior_gasto, exportar_csv, exportar_excel)
 
 print("""
 MENU PRINCIPAL
@@ -38,10 +38,14 @@ while True:
         maior_gasto()
 
     elif escolha == "5":
+        exportar_csv()
+        exportar_excel()
+        print("ARQUIVOS .CSV E .XLSX GERADOS!")
 
-        resultado_csv = exportar_csv()
 
-        if resultado_csv:
-            print(resultado_csv)
+    elif escolha == "0":
+        print("Saindo...")
+        break
 
-            
+    else:
+        print("Opcao invalida!")
